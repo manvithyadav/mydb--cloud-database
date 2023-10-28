@@ -90,5 +90,7 @@ def renderRegisterView(request) :
     else :
         userRegistrationForm = UserRegistrationForm()
         context['userRegistrationForm'] = userRegistrationForm
+        
+        # print(userRegistrationForm)
 
         return render(request, APPNAME + '/register.html', context)

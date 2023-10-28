@@ -6,10 +6,11 @@
 
     <div class="login-div">
 
+        <p class="login-alert">You must be logged in to use this database.</p>
         <form action="" method="post" class="login-form"> {% csrf_token %}
             <div class="form-group">
               <label for="exampleInputUsername1">Username</label>
-              <input type="username" class="form-control" id="exampleInputUsername1" aria-describedby="usernameHelp" placeholder="Enter username">
+              <input type="username" class="form-control" id="exampleInputUsername1" autofocus aria-describedby="usernameHelp" placeholder="Enter username">
               <!-- <small id="usernameHelp" class="form-text text-muted">We'll never share your username with anyone else.</small> -->
             </div>
             <div class="form-group">
