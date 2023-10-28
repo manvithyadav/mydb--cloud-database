@@ -1,0 +1,9 @@
+{% extends 'personal/main.html' %}
+
+
+{% block content %}
+
+{{ request.user }}
+<a href="{% url 'logout' %}">logout</a>
+
+{% endblock %}
