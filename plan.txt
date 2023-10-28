@@ -1,0 +1,19 @@
+Build a database
+
+database means, a web app that allows us to store and retrieve files, images
+
+
+1. when entered to site, asks user to signin/signup
+2. when logged in, user can see folders and files they store
+3. top nav will have
+    go back to parent folder
+    create a new folder
+    create a new file
+    upload a file
+    search for files/folders
+    sort files/folders
+    a dynamic path to current folder
+4. user can also view a file in browser
+
+5. in personal app
+    user authentication
