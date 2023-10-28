@@ -1,0 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.body {
+    background: linear-gradient(135deg, var(--theme-1), var(--theme-2));
+}

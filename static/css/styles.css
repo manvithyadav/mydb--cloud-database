@@ -2,20 +2,26 @@
 @import url(./variables.css);
 
 
+body {
+    min-height: 89vh;
+    /* border: red 2px solid; */
+    background: linear-gradient(135deg, var(--theme-1), var(--theme-1));
+}
+
 .container {
     width: 100%;
-    min-height: 100vh;
-
-    /* background-color: red; */
 }
 
 .login-div, .register-div {
     width: 40%;
-    margin: 10rem auto;
-    padding: .5rem;
+    margin: 5rem auto;
+    padding: 2rem 1rem;
 
-    border: red solid 1px;
+    /* border: red solid 1px; */
     border-radius: 10px;
+
+    background-color: var(--theme-3);
+    font-family: var(--font-primary);
 }
 
 .login-form, .register-form {
@@ -25,6 +31,13 @@
     justify-content: center;
     width: 100%;
     padding: 1rem;
+
+    color: var(--theme-4);
+}
+
+.login-div h1, .register-div h1 {
+    color: var(--theme-4);
+    text-align: center;
 }
 
 .login-form label, .register-form label {
@@ -33,10 +46,31 @@
 }
 
 .login-form input, .register-form input {
+    border: none;
     height: 3rem;
     font-size: 1.2rem;
+    background-color: var(--theme-2);
+}
+
+.login-form input:focus, .register-form input:focus {
+    background-color: var(--theme-2);
 }
 
 .login-form button, .register-form button {
+    height: 3rem;
+    border: none;
+    background-color: var(--theme-4);
     margin: 1rem 0 0 0;
+    /* transition: background-color 1s ease-in-out; */
+}
+
+.login-form button:hover, .register-form button:hover {
+    background-color: var(--theme-4);
+}
+
+.login-alert {
+    text-align: center;
+    font-family: var(--font-secondary);
+    font-size: 1.2rem;
+    color: var(--theme-4)
 }
