@@ -1,3 +1,5 @@
 /migrations
 /__pycache__
 /static_cdn/admin
+# db.sqlite3
+# .gitignore

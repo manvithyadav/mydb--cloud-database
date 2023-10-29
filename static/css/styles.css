@@ -5,7 +5,7 @@
 body {
     min-height: 89vh;
     /* border: red 2px solid; */
-    background: linear-gradient(135deg, var(--theme-1), var(--theme-1));
+    /* background: linear-gradient(135deg, var(--theme-1), var(--theme-1)); */
 }
 
 .container {
@@ -20,8 +20,10 @@ body {
     /* border: red solid 1px; */
     border-radius: 10px;
 
-    background-color: var(--theme-3);
+    /* background-color: var(--theme-3); */
     font-family: var(--font-primary);
+
+    /* box-shadow: 10px 10px; */
 }
 
 .login-form, .register-form {
