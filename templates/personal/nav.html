@@ -3,7 +3,10 @@
 
     <div class="nav-bar">
         <div class="nav-non-auth">
-            
+            <div class="nav-item">
+                <a href="{% url 'create-folder' %}" class="link-btn">create new folder</a>
+                <a href="{% url 'create-file' %}" class="link-btn">create new file</a>
+            </div>
         </div>
 
         <div class="nav-auth">

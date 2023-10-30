@@ -26,3 +26,6 @@ database means, a web app that allows us to store and retrieve files, images
         logout
         new file, upload
         new folder
+
+
+7. in place of folder id in url, use some large string to make it more secure

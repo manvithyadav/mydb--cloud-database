@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', include('personal.urls')),
+    path('folders/', include('explorer.urls')),
 ]
 
 

@@ -11,7 +11,6 @@
     align-items: center;
 
     height: 4rem;
-    /* border: red 1px solid; */
     background-color: var(--theme-2);
 
     border-radius: 10px;
@@ -26,14 +25,13 @@
     justify-content: space-around;
     align-items: center;
 
-    /* border: red 1px solid; */
 }
 
 
 .nav-item {
 }
 
-.nav-auth a {
+.nav-auth a, .nav-non-auth a {
     color: var(--theme-4);
 
     padding: .5rem 1rem;
@@ -41,7 +39,7 @@
     border-radius: 5px;
 }
 
-.nav-auth a:hover {
+.nav-auth a:hover, .nav-non-auth a:hover {
     color: var(--theme-1);
     background-color: var(--theme-4);
 }
@@ -55,5 +53,4 @@
     justify-content: space-between;
     align-items: center;
 
-    /* border: blue 1px solid; */
 }
