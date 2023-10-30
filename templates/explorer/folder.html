@@ -4,7 +4,15 @@
 {% block content %}
 
     <div class="path-div">
-        links to parent folders till root
+        <!-- links to parent folders till root -->
+
+        {{ folder.name }}
+        <br>
+        {{ folder.path }}
+        <br>
+        {{ folder.parent }}
+        <br>
+        {{ folder.user }}
     </div>
 
 {% endblock %}

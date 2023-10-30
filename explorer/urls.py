@@ -10,6 +10,6 @@ from .views import (
 
 urlpatterns = [
     path('<folder_id>', renderFolderView, name='folder'),
-    path('create-folder/', renderCreateFolderView, name='create-folder'),
-    path('create-file/', renderCreateFileView, name='create-file'),
+    path('create-folder/<parent_id>', renderCreateFolderView, name='create-folder'),
+    path('create-file/<parent_id>', renderCreateFileView, name='create-file'),
 ]

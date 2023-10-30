@@ -6,7 +6,7 @@ from .models import (
 )
 
 
-class CreateFolderForm(forms.ModelForm) :
+class FolderCreationForm(forms.ModelForm) :
 
     class Meta :
         model = Folder

@@ -5,7 +5,7 @@ from .models import (
 )
 
 from .forms import (
-    CreateFolderForm,
+    FolderCreationForm,
 )
 
 
@@ -36,6 +36,7 @@ def renderFolderView(request, folder_id) :
             parent = parent.parent
 
         context['parents'] = parents
+        context['folder'] = folder
 
         # get all files in the folder
 
@@ -48,27 +49,61 @@ def renderFolderView(request, folder_id) :
 
 
 
-def renderCreateFolderView(request) :
+def renderCreateFolderView(request, parent_id) :
     if not request.user.is_authenticated :
         return redirect('login')
     
+    if request.user.is_superuser :
+       return redirect('home')
+
+    
     context = {}
+    parent = Folder.objects.get(id=parent_id)
+    context['folder'] = parent
+
 
 
     if request.method == 'POST' :
-        pass            
+        folderCreationForm = FolderCreationForm(request.POST)
+        if folderCreationForm.is_valid() :
+
+            folder = Folder.objects.create(
+                user=request.user,
+                name=request.POST['name'],
+                path=parent.path + request.POST['name'] + '/',
+                parent=parent,
+            )
+
+            print("folder created")
+
+            print(f'parent is {parent} and folder is {folder}')
+
+            # after creating a new folder, we need to send to page of new folder
+
+            context['folder'] = folder
+            context['parent'] = parent
+
+            return render(request, APPNAME + '/folder.html', context)
+        
+        else :
+            print("form invalid")
+            folderCreationForm = FolderCreationForm()
+            context['folderCreationForm'] = folderCreationForm
+            
         
     else :
-        createFolderForm = CreateFolderForm()
-        context['createFolderForm'] = createFolderForm
+        folderCreationForm = FolderCreationForm()
+        context['folderCreationForm'] = folderCreationForm
 
     return render(request, APPNAME + '/create_folder.html', context)
 
 
-def renderCreateFileView(request) :
+def renderCreateFileView(request, parent_id) :
     if not request.user.is_authenticated :
         return redirect('login')
     
     context = {}
+    parent = Folder.objects.get(id=parent_id)
+    context['folder'] = parent
 
     return render(request, APPNAME + '/create_file.html', context)

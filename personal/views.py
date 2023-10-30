@@ -25,6 +25,13 @@ def renderHomeView(request) :
     if request.user.is_superuser :
        return render(request, APPNAME + '/home.html', context)
     
+    try :
+        root = Folder.objects.get(id=request.user.dbuser.root_id)
+        context['folder'] = root
+    except Folder.DoesNotExist :
+        print("folder does not exist")
+        return redirect('home')
+    
     return redirect('folder', folder_id=request.user.dbuser.root_id)
 
 
@@ -38,7 +45,7 @@ def renderLoginView(request) :
         # username = request.POST['username']
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username, password)
+        # print(username, password)
 
         user = authenticate(request, username=username, password=password)
 
@@ -118,5 +125,12 @@ def renderProfileView(request) :
         return redirect('login')
     
     context = {}
+
+    try :
+        root = Folder.objects.get(id=request.user.dbuser.root_id)
+        context['folder'] = root
+    except Folder.DoesNotExist :
+        print("folder does not exist")
+        return redirect('home')
 
     return render(request, APPNAME + '/profile.html', context)
