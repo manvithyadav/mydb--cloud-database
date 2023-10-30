@@ -2,3 +2,15 @@
 @import url(./variables.css);
 
 
+.path-div {
+    /* border: red 1px solid; */
+
+    padding: 1rem;
+}
+
+.path-slash {
+    font-weight: 600;
+    background-color: rgb(220, 220, 220);
+    padding: .5rem .2rem;
+    border-radius: 3px;
+}

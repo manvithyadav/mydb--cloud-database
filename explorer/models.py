@@ -12,6 +12,6 @@ class Folder(models.Model) :
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self) :
-        return self.name + ', ' + self.user.username
+        return self.name
     
 

@@ -22,7 +22,12 @@ def renderFolderView(request, folder_id) :
     if not request.user.is_authenticated :
         return redirect('login')
     
+    if request.user.is_superuser :
+       return redirect('home')
+    
     context = {}
+
+    print(f'session is {request.session}')
 
     try :
         folder = Folder.objects.get(id=folder_id)
@@ -37,6 +42,9 @@ def renderFolderView(request, folder_id) :
 
         context['parents'] = parents
         context['folder'] = folder
+
+        children = folder.folder_set.all()
+        context['children'] = children
 
         # get all files in the folder
 
@@ -83,7 +91,13 @@ def renderCreateFolderView(request, parent_id) :
             context['folder'] = folder
             context['parent'] = parent
 
-            return render(request, APPNAME + '/folder.html', context)
+            # request.session['context'] = context
+            request.session['folder_id'] = context['folder'].id
+            request.session['parent_id'] = context['parent'].id
+
+            return redirect('folder', folder_id=folder.id)
+
+            # return render(request, APPNAME + '/folder.html', context)
         
         else :
             print("form invalid")
@@ -101,6 +115,9 @@ def renderCreateFolderView(request, parent_id) :
 def renderCreateFileView(request, parent_id) :
     if not request.user.is_authenticated :
         return redirect('login')
+    
+    if request.user.is_superuser :
+       return redirect('home')
     
     context = {}
     parent = Folder.objects.get(id=parent_id)

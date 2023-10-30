@@ -6,13 +6,27 @@
     <div class="path-div">
         <!-- links to parent folders till root -->
 
-        {{ folder.name }}
-        <br>
-        {{ folder.path }}
-        <br>
-        {{ folder.parent }}
-        <br>
-        {{ folder.user }}
+        {{request.user.dbuser.root_id}}{{folder.id}}
+
+        {% if request.user.dbuser.root_id == folder.id %}
+            root
+        {% endif %}
+
+        {% for parent in parents %}
+
+            <a href="{% url 'folder' parent.id %}" class="path-link-bth">{{ parent }}</a>
+            <span class="path-slash">/</span>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="directory">
+        {{ children }}
+        <div class="directory-item">
+
+        </div>
     </div>
 
 {% endblock %}

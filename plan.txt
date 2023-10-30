@@ -51,3 +51,14 @@ database means, a web app that allows us to store and retrieve files, images
             when a user is logged in and accesses the home page we jst redirect them to root folder page
                 after login redirect user to redirect('folder', folder_id=user.root.id)
                 for this add a field in User model for root folder
+
+10. as of now I am managing folders
+    folder path is just parent.path + folder name (a string)
+        deletion and creation of new folders is okay
+        but what if we rename a folder, then the paths of all sub folders and files need to be changed
+        
+
+11. new functionalities
+    deleting a folder/file
+    copy/paste folders/files
+    move folders/files to another folder
