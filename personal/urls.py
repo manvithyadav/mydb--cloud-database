@@ -5,6 +5,7 @@ from .views import (
     renderRegisterView,
     renderLoginView,
     renderLogoutView,
+    renderProfileView,
 )
 
 
@@ -13,4 +14,5 @@ urlpatterns = [
     path('register/', renderRegisterView, name='register'),
     path('login/', renderLoginView, name='login'),
     path('logout/', renderLogoutView, name='logout'),
+    path('profile/', renderProfileView, name='profile'),
 ]

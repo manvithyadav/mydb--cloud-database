@@ -94,3 +94,12 @@ def renderRegisterView(request) :
         # print(userRegistrationForm)
 
         return render(request, APPNAME + '/register.html', context)
+    
+
+def renderProfileView(request) :
+    if not request.user.is_authenticated :
+        return redirect('login')
+    
+    context = {}
+
+    return render(request, APPNAME + '/profile.html', context)

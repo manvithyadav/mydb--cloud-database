@@ -17,3 +17,12 @@ database means, a web app that allows us to store and retrieve files, images
 
 5. in personal app
     user authentication
+
+
+6. nav
+    if not logged in
+        login, signup
+    else
+        logout
+        new file, upload
+        new folder

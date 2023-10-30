@@ -10,3 +10,7 @@
     min-height: 89vh;
     background: aqua;
 } */
+
+a {
+    text-decoration: none;
+}

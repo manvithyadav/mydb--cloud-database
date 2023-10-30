@@ -1,0 +1,22 @@
+
+{% block content %}
+
+    <div class="nav-bar">
+        <div class="nav-non-auth">
+            
+        </div>
+
+        <div class="nav-auth">
+            {% if request.user.is_authenticated %}
+                <div class="nav-item"><a href="{% url 'profile' %}">{{ request.user }}</a></div>
+                <div class="nav-item"><a href="{% url 'logout' %}" class="link-btn">logout</a></div>
+
+            {% else %}
+                <div class="nav-item"><a href="{% url 'login' %}" class="link-btn">login</a></div>
+                <div class="nav-item"><a href="{% url 'register' %}" class="link-btn">register</a></div>
+
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}
