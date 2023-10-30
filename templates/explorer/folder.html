@@ -6,10 +6,8 @@
     <div class="path-div">
         <!-- links to parent folders till root -->
 
-        {{request.user.dbuser.root_id}}{{folder.id}}
-
-        {% if request.user.dbuser.root_id == folder.id %}
-            root
+        {% if request.user.dbuser.root_id == folder.id|stringformat:"i" %}
+            <span class="path-slash">/</span>
         {% endif %}
 
         {% for parent in parents %}
@@ -23,10 +21,13 @@
 
 
     <div class="directory">
-        {{ children }}
-        <div class="directory-item">
-
-        </div>
+        {% for child in children %}
+            <div class="directory-item folder">
+                <a href="{% url 'folder' child.id %}" class="folder-link">{{ child }}</a>
+                <p class="modified-time">modified at</p>
+                <p class="created-time">created at</p>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}

@@ -48,6 +48,8 @@ def renderFolderView(request, folder_id) :
 
         # get all files in the folder
 
+        # print(type(request.user.dbuser.root_id), type(folder.id))
+
         return render(request, APPNAME + '/folder.html', context)
 
     
