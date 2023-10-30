@@ -4,8 +4,10 @@
     <div class="nav-bar">
         <div class="nav-non-auth">
             <div class="nav-item">
-                <a href="{% url 'create-folder' %}" class="link-btn">create new folder</a>
-                <a href="{% url 'create-file' %}" class="link-btn">create new file</a>
+                {% if request.user.is_authenticated and not request.user.is_superuser %}
+                    <a href="{% url 'create-folder' %}" class="link-btn">create new folder</a>
+                    <a href="{% url 'create-file' %}" class="link-btn">create new file</a>
+                {% endif %}
             </div>
         </div>
 

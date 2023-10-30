@@ -29,3 +29,25 @@ database means, a web app that allows us to store and retrieve files, images
 
 
 7. in place of folder id in url, use some large string to make it more secure
+
+8. for each user, we create a root folder when they register
+
+9. when user creates a new folder, he jst provides folder name
+    we need to get user, parent folder and path for it
+    request.user gives user
+    path is just parent.path + folder name
+
+    so we need to get the parent somehow
+
+    <!-- we can use a session variable to store the name of the current folder that  -->
+    we can use the folder_id that we pass to renderFolderView method
+        we pass the same id to renderCreateFolderView method
+        but problem is when creating a new folder in root folder (where the page is just home page) we don't have any folder_id
+            here we can use session var
+            if home page is loaded and user is logged in, we create a session variable
+
+            or
+
+            when a user is logged in and accesses the home page we jst redirect them to root folder page
+                after login redirect user to redirect('folder', folder_id=user.root.id)
+                for this add a field in User model for root folder

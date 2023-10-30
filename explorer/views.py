@@ -4,6 +4,9 @@ from .models import (
     Folder,
 )
 
+from .forms import (
+    CreateFolderForm,
+)
 
 
 APPNAME = 'explorer'
@@ -50,6 +53,14 @@ def renderCreateFolderView(request) :
         return redirect('login')
     
     context = {}
+
+
+    if request.method == 'POST' :
+        pass            
+        
+    else :
+        createFolderForm = CreateFolderForm()
+        context['createFolderForm'] = createFolderForm
 
     return render(request, APPNAME + '/create_folder.html', context)
 

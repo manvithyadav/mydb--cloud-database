@@ -9,6 +9,10 @@ from .models import (
     DBUser,
 )
 
+from explorer.models import (
+    Folder,
+)
+
 APPNAME = 'personal'
 
 # Create your views here.
@@ -17,8 +21,11 @@ def renderHomeView(request) :
 
     if not request.user.is_authenticated :
         return redirect('login')
-
-    return render(request, APPNAME + '/home.html', context)
+    
+    if request.user.is_superuser :
+       return render(request, APPNAME + '/home.html', context)
+    
+    return redirect('folder', folder_id=request.user.dbuser.root_id)
 
 
 def renderLoginView(request) :
@@ -42,6 +49,7 @@ def renderLoginView(request) :
         login(request, user)
     
         return redirect('home')
+        # return redirect('folder', folder_id=user.dbuser.root_id)
 
     else :
         return render(request, APPNAME + '/login.html', context)
@@ -71,12 +79,21 @@ def renderRegisterView(request) :
 
             user = userRegistrationForm.save()
 
+            # create a root folder for the user
+            root = Folder.objects.create(
+                user=user,
+                name='root',
+                path='/',
+                parent=None,
+            )
+
             dbuser = DBUser.objects.create(
                 user=user,
                 name=name,
+                root_id=root.id,
             )
 
-            print(user, dbuser)
+            print(user, root, dbuser)
 
             return redirect('login')
 
