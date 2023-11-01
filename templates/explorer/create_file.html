@@ -3,6 +3,19 @@
 
 {% block content %}
 
+    <div class="path-div">
+        <span class="path-slash">/</span>
+
+        {% for parent in parents %}
+
+            <a href="{% url 'folder' parent.id %}" class="path-link-bth">{{ parent }}</a>
+            <span class="path-slash">/</span>
+
+        {% endfor %}
+
+        {{ folder }}
+    </div>
+
     <div class="create-file-div">
         <h1>Create file</h1>
 

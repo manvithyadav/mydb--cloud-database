@@ -29,8 +29,6 @@ def renderFolderView(request, folder_id) :
     
     context = {}
 
-    print(f'session is {request.session}')
-
     try :
         folder = Folder.objects.get(id=folder_id)
 
@@ -41,6 +39,8 @@ def renderFolderView(request, folder_id) :
         while parent is not None :
             parents.append(parent)
             parent = parent.parent
+
+        parents.reverse()
 
         context['parents'] = parents
         context['folder'] = folder
@@ -76,6 +76,22 @@ def renderCreateFolderView(request, parent_id) :
     parent = Folder.objects.get(id=parent_id)
     context['folder'] = parent
 
+    parents = []
+
+
+    # if we use 'parent' for iterating param, it will be confusing
+    # for folder view, parent is not current folder
+    # while for create folder and upload file view the parent is same ad the current folder
+    # so we start with parent's parent here and in upload file view
+    par = parent.parent
+    while par is not None :
+        parents.append(par)
+        par = par.parent
+
+    parents.reverse()
+
+    context['parents'] = parents
+
 
 
     if request.method == 'POST' :
@@ -98,6 +114,7 @@ def renderCreateFolderView(request, parent_id) :
             context['folder'] = folder
             context['parent'] = parent
 
+
             # request.session['context'] = context
             request.session['folder_id'] = context['folder'].id
             request.session['parent_id'] = context['parent'].id
@@ -113,6 +130,8 @@ def renderCreateFolderView(request, parent_id) :
             
         
     else :
+
+
         folderCreationForm = FolderCreationForm()
         context['folderCreationForm'] = folderCreationForm
 
@@ -129,6 +148,17 @@ def renderUploadFileView(request, parent_id) :
     context = {}
     parent = Folder.objects.get(id=parent_id)
     context['folder'] = parent
+
+    parents = []
+
+    par = parent.parent
+    while par is not None :
+        parents.append(par)
+        par = par.parent
+
+    parents.reverse()
+
+    context['parents'] = parents
 
 
     if request.method == 'POST' :
@@ -155,7 +185,7 @@ def renderUploadFileView(request, parent_id) :
     
     else :
         fileUploadForm = FileUploadForm()
-        print(fileUploadForm)
+        # print(fileUploadForm)
         context['fileUploadForm'] = fileUploadForm
 
     return render(request, APPNAME + '/create_file.html', context)

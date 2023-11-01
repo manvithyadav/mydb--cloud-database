@@ -1,12 +1,12 @@
 STATUS
-    start file upload/create
+    *start file upload/create*
+    *path link in create folder and upload file*
+    set media settings
+    field in file model for storing actual file
 
 
 
-Build a database
-
-database means, a web app that allows us to store and retrieve files, images
-
+0. Build a database. A database means, a web app that allows us to store and retrieve files, images
 
 1. when entered to site, asks user to signin/signup
 2. when logged in, user can see folders and files they store

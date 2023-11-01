@@ -4,11 +4,7 @@
 {% block content %}
 
     <div class="path-div">
-        <!-- links to parent folders till root -->
-
-        {% if request.user.dbuser.root_id == folder.id|stringformat:"i" %}
-            <span class="path-slash">/</span>
-        {% endif %}
+        <span class="path-slash">/</span>
 
         {% for parent in parents %}
 
@@ -17,6 +13,7 @@
 
         {% endfor %}
 
+        {{ folder }}
     </div>
 
 
