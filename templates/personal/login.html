@@ -8,12 +8,12 @@
         <form action="" method="post" class="login-form"> {% csrf_token %}
             <div class="form-group">
                 <!-- <label for="username">Username</label> -->
-                <input type="username" class="form-control" name="username" id="username" aria-describedby="usernameHelp" placeholder="Enter username">
+                <input type="username" class="form-control" name="username" id="username" aria-describedby="usernameHelp" placeholder="Enter username" required>
             </div>
             <!-- <small id="usernameHelp" class="form-text text-muted">We'll never share your username with anyone else.</small> -->
             <div class="form-group">
                 <!-- <label for="password">Password</label> -->
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

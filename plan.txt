@@ -1,3 +1,8 @@
+STATUS
+    start file upload/create
+
+
+
 Build a database
 
 database means, a web app that allows us to store and retrieve files, images
@@ -63,15 +68,10 @@ database means, a web app that allows us to store and retrieve files, images
     copy/paste folders/files
     move folders/files to another folder
     drag and drop
+    trash
 
     these seem to be complex
     so trying to continue with current implementation and will do another project with correct implementation
 
-12. status
-    path link done, but for root folder nothing is displayed (need to show '/')
-
-    display the sub folders for a folder page
-    start file upload/create
-
-13. for folder, add a created_at field
-14. change create file to upload file
+12. for folder, add a created_at field and modified_at field
+13. change create file to upload file

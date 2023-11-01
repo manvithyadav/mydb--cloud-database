@@ -2,10 +2,12 @@ from django.shortcuts import render, redirect
 
 from .models import (
     Folder,
+    File,
 )
 
 from .forms import (
     FolderCreationForm,
+    FileUploadForm,
 )
 
 
@@ -45,6 +47,9 @@ def renderFolderView(request, folder_id) :
 
         children = folder.folder_set.all()
         context['children'] = children
+
+        files = folder.file_set.all()
+        context['files'] = files
 
         # get all files in the folder
 
@@ -114,7 +119,7 @@ def renderCreateFolderView(request, parent_id) :
     return render(request, APPNAME + '/create_folder.html', context)
 
 
-def renderCreateFileView(request, parent_id) :
+def renderUploadFileView(request, parent_id) :
     if not request.user.is_authenticated :
         return redirect('login')
     
@@ -124,5 +129,33 @@ def renderCreateFileView(request, parent_id) :
     context = {}
     parent = Folder.objects.get(id=parent_id)
     context['folder'] = parent
+
+
+    if request.method == 'POST' :
+        fileUploadForm = FileUploadForm(request.POST)
+        if fileUploadForm.is_valid() :
+            # create a file
+            # store folder_id and parent_id in session
+            # redirect to folder
+
+            file = File.objects.create(
+                user=request.user,
+                name=request.POST['name'],
+                file_type=request.POST['file_type'],
+                folder=parent,
+            )
+
+            # request.session['folder_id'] = context['folder'].id
+            # request.session['parent_id'] = context['parent'].id
+
+            return redirect('folder', folder_id=parent.id)
+        else :
+            print("invalid form")
+        return render(request, APPNAME + '/create_file.html', context)
+    
+    else :
+        fileUploadForm = FileUploadForm()
+        print(fileUploadForm)
+        context['fileUploadForm'] = fileUploadForm
 
     return render(request, APPNAME + '/create_file.html', context)

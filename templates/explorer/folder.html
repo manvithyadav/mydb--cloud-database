@@ -28,6 +28,13 @@
                 <p class="created-time">created at</p>
             </div>
         {% endfor %}
+
+        {% for file in files %}
+            <div class="directory-item file">
+                <h4 class="file-name">{{ file.name }}</h4>
+                <p class="uploaded-time">{{ file.upload_time }}</p>
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}
