@@ -9,10 +9,12 @@
 }
 
 .path-slash {
-    font-weight: 600;
-    background-color: rgb(220, 220, 220);
-    padding: .5rem .2rem;
-    border-radius: 3px;
+    font-weight: 900;
+    color: var(--theme-3);
+    /* font-size: 2rem; */
+    /* background-color: rgb(220, 220, 220); */
+    /* padding: .5rem .2rem; */
+    /* border-radius: 3px; */
 }
 
 

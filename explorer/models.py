@@ -34,6 +34,8 @@ class File(models.Model) :
     upload_time = models.DateTimeField(auto_now_add=True)
     file_type = models.CharField(max_length=255, blank=False, choices=FILE_TYPE)
 
+    file = models.FileField(null=True, blank=False)
+
     # no need of path for a file (as it is folder path + file name)
     
     def __str__(self) :

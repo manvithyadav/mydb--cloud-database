@@ -50,6 +50,9 @@ def renderFolderView(request, folder_id) :
 
         files = folder.file_set.all()
         context['files'] = files
+        # for file in files :
+        #     if file.file :
+        #         print(file.file.name, file.file.path, file.file.url, file.file.size)
 
         # get all files in the folder
 
@@ -162,17 +165,20 @@ def renderUploadFileView(request, parent_id) :
 
 
     if request.method == 'POST' :
-        fileUploadForm = FileUploadForm(request.POST)
+        fileUploadForm = FileUploadForm(request.POST, request.FILES)
         if fileUploadForm.is_valid() :
             # create a file
             # store folder_id and parent_id in session
             # redirect to folder
+
+            print(f'{request.FILES}')
 
             file = File.objects.create(
                 user=request.user,
                 name=request.POST['name'],
                 file_type=request.POST['file_type'],
                 folder=parent,
+                file=request.FILES['file'],
             )
 
             # request.session['folder_id'] = context['folder'].id
@@ -181,6 +187,7 @@ def renderUploadFileView(request, parent_id) :
             return redirect('folder', folder_id=parent.id)
         else :
             print("invalid form")
+            print(fileUploadForm.errors)
         return render(request, APPNAME + '/create_file.html', context)
     
     else :

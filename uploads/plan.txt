@@ -1,8 +1,8 @@
 STATUS
     *start file upload/create*
     *path link in create folder and upload file*
-    *set media settings*
-    *field in file model for storing actual file*
+    set media settings
+    field in file model for storing actual file
 
 
 

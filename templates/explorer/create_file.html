@@ -19,12 +19,15 @@
     <div class="create-file-div">
         <h1>Create file</h1>
 
-        <form action="" method="post" class="create-file-form"> {% csrf_token %}
+        <form action="" method="post" enctype="multipart/form-data" class="create-file-form"> {% csrf_token %}
             <div class="form-group">
                 <input type="text" class="form-control" name="name" id="name" placeholder="Enter file name" required>
             </div>
+
             <div class="form-group">
-                <!-- <input type="text" class="form-control" name="file_type" id="file_type" placeholder="Choose file type"> -->
+                <input type="file" class="form-control" name="file" required id="id_file">
+            </div>
+            <div class="form-group">
                 <select name="file_type" class="form-select" id="id_file_type" required>
                     <option value="" selected>Choose file type</option>
                   
