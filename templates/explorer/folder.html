@@ -35,6 +35,7 @@
                 {% endif %}
                 <p class="file-type">{{ file.file_type }}</p>
                 <p class="uploaded-time">{{ file.upload_time|formatDateTime }}</p>
+                <a href="{% url 'delete-file' folder.id file.id %}" class="delete-link"><i class="fa-solid fa-trash fa-spin"></i></a>
             </div>
         {% endfor %}
     </div>

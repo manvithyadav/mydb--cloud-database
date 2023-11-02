@@ -202,3 +202,26 @@ def renderUploadFileView(request, parent_id) :
         context['fileUploadForm'] = fileUploadForm
 
     return render(request, APPNAME + '/create_file.html', context)
+
+
+def renderDeleteFileView(request, parent_id, file_id) :
+    if not request.user.is_authenticated :
+        return redirect('login')
+    
+    if request.user.is_superuser :
+       return redirect('home')
+    
+    context = {}
+
+    
+    try :
+        file = File.objects.get(id=file_id)
+        file.delete()
+
+        return redirect('folder', folder_id=parent_id)
+    
+    except File.DoesNotExist :
+        print("file not found")
+        return redirect('home')
+    
+    # return render(request, APPNAME + '/delete_file.html', context)

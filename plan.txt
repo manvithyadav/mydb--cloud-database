@@ -6,7 +6,8 @@ STATUS
     a way to file in browser itself
     download file
     trim the date time on file, show file extension
-    delete file
+    *delete file*
+    trash folder
 
 
 
@@ -79,3 +80,8 @@ STATUS
 
 12. for folder, add a created_at field and modified_at field
 13. change create file to upload file
+14. for implementin trash, do the same as root.
+    create a folder (for trash) when user register and attach it to the user
+    when a file is deleted
+        delete file in that folder
+        create a new file in trash with same attrib's
