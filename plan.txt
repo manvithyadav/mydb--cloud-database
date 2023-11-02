@@ -3,6 +3,10 @@ STATUS
     *path link in create folder and upload file*
     *set media settings*
     *field in file model for storing actual file*
+    a way to file in browser itself
+    download file
+    trim the date time on file, show file extension
+    delete file
 
 
 

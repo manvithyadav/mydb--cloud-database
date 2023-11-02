@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.template.defaulttags import register
 
 from .models import (
     Folder,
@@ -18,6 +19,11 @@ APPNAME = 'explorer'
 # def getParentPath(current) :
 #     parent = curr
 #     while parent is not None :
+
+
+@register.filter
+def formatDateTime(upload_time) :
+    return upload_time.strftime("%m/%d/%Y, %H:%M:%S")
 
 
 def renderFolderView(request, folder_id) :
@@ -50,9 +56,9 @@ def renderFolderView(request, folder_id) :
 
         files = folder.file_set.all()
         context['files'] = files
-        # for file in files :
-        #     if file.file :
-        #         print(file.file.name, file.file.path, file.file.url, file.file.size)
+        for file in files :
+            if file.file :
+                print(file.upload_time.strftime("%m/%d/%Y, %H:%M:%S"))
 
         # get all files in the folder
 

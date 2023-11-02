@@ -45,7 +45,7 @@
 }
 
 
-.folder-link, .file-name {
+.folder-link, .file-name, .file-link {
     flex: 4;
 
     text-align: center;
@@ -54,7 +54,15 @@
     color: var(--theme-4);
 }
 
-.folder-link:hover {
+.file-link {
+    font-size: 1.4rem;
+}
+
+.file-name {
+    margin: 0;
+}
+
+.folder-link:hover, .file-link:hover {
     color: var(--theme-4);
 }
 
@@ -116,4 +124,18 @@
     border-radius: 0 0 10px 10px;
 
     font-size: .8rem;
+}
+
+.file-type {
+    flex: 1;
+
+    margin: 0;
+
+    background-color: var(--grey-3);
+
+    padding: 0 0 0 .5rem;
+    border-radius: 0 0 10px 10px;
+
+    font-size: .8rem;
+    text-align: center;
 }

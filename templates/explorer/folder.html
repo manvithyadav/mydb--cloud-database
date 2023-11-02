@@ -28,8 +28,13 @@
 
         {% for file in files %}
             <div class="directory-item file">
-                <h4 class="file-name">{{ file.name }}</h4>
-                <p class="uploaded-time">{{ file.upload_time }}</p>
+                {% if file.file %}
+                    <a href="{{ file.file.url }}" class="file-link" target="_blank">{{ file.name }}</a>
+                {% else %}
+                    <h4 class="file-name">{{ file.name }}</h4>
+                {% endif %}
+                <p class="file-type">{{ file.file_type }}</p>
+                <p class="uploaded-time">{{ file.upload_time|formatDateTime }}</p>
             </div>
         {% endfor %}
     </div>
