@@ -85,3 +85,5 @@ STATUS
     when a file is deleted
         delete file in that folder
         create a new file in trash with same attrib's
+
+15. for now actual path of a folder is diff from path link shown in the folder page (actual path doesn't have root included)

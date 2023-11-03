@@ -94,13 +94,22 @@ def renderRegisterView(request) :
                 parent=None,
             )
 
+            # create a trash folder for the user
+            trash = Folder.objects.create(
+                user=user,
+                name='trash',
+                path='/trash',
+                parent=root,
+            )
+
             dbuser = DBUser.objects.create(
                 user=user,
                 name=name,
                 root_id=root.id,
+                trash_id=trash.id,
             )
 
-            print(user, root, dbuser)
+            print(user, root, trash, dbuser)
 
             return redirect('login')
 
