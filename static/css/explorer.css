@@ -160,3 +160,24 @@
     color: var(--theme-4);
     background-color: rgb(255, 98, 98);
 }
+
+.restore-link {
+    flex: 1;
+
+    margin: 0;
+
+    background-color: var(--grey-3);
+    color: var(--theme-4);
+
+    border-radius: 0 0 10px 10px;
+
+    font-size: .8rem;
+    text-align: center;
+
+    transition: background-color .2s ease-in-out;
+}
+
+.restore-link:hover {
+    color: var(--theme-4);
+    background-color: rgb(125, 173, 117);
+}

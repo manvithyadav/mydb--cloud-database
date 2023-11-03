@@ -25,6 +25,11 @@ APPNAME = 'explorer'
 def formatDateTime(upload_time) :
     return upload_time.strftime("%m/%d/%Y, %H:%M:%S")
 
+@register.filter
+def isTrashFolder(request, folder_id) :
+    # print(request, folder_id, request.user.dbuser.trash_id, type(request.user.dbuser.trash_id), type(folder_id))
+    return str(request.user.dbuser.trash_id) == str(folder_id)
+
 
 def renderFolderView(request, folder_id) :
     if not request.user.is_authenticated :
@@ -215,8 +220,26 @@ def renderDeleteFileView(request, parent_id, file_id) :
 
     
     try :
+        # create a file in user's trash folder
         file = File.objects.get(id=file_id)
+
+        # if current folder is trash, then we don't create a file again in trash
+        if request.user.dbuser.trash_id != parent_id :
+
+            trash = Folder.objects.get(id=request.user.dbuser.trash_id)
+            new_file = File.objects.create(
+                user=request.user,
+                name=file.name,
+                file_type=file.file_type,
+                folder=trash,
+                file=file.file,
+                restore_folder_id=parent_id,
+            )
+            new_file.save()
+
         file.delete()
+
+        
 
         return redirect('folder', folder_id=parent_id)
     
@@ -225,3 +248,29 @@ def renderDeleteFileView(request, parent_id, file_id) :
         return redirect('home')
     
     # return render(request, APPNAME + '/delete_file.html', context)
+
+
+def renderRestoreFileView(request, parent_id, file_id) :
+    if not request.user.is_authenticated :
+        return redirect('login')
+    
+    if request.user.is_superuser :
+       return redirect('home')
+    
+    context = {}
+
+    try :
+        # create a file in user's trash folder
+        file = File.objects.get(id=file_id)
+        
+        file.folder = Folder.objects.get(id=file.restore_folder_id)
+        file.restore_folder_id = None
+        file.save()
+
+        
+
+        return redirect('folder', folder_id=parent_id)
+    
+    except File.DoesNotExist :
+        print("file not found")
+        return redirect('home')

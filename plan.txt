@@ -5,9 +5,10 @@ STATUS
     *field in file model for storing actual file*
     a way to file in browser itself
     download file
-    trim the date time on file, show file extension
+    *trim the date time on file, show file extension*
     *delete file*
-    trash folder
+    *trash folder*
+    *restore from trash*
 
 
 
@@ -73,7 +74,8 @@ STATUS
     copy/paste folders/files
     move folders/files to another folder
     drag and drop
-    trash
+    <!-- trash -->
+    right click context menu
 
     these seem to be complex
     so trying to continue with current implementation and will do another project with correct implementation
@@ -87,3 +89,14 @@ STATUS
         create a new file in trash with same attrib's
 
 15. for now actual path of a folder is diff from path link shown in the folder page (actual path doesn't have root included)
+
+16. implementing restore from trash
+    use a field in File model to store the folder id to which it will be restored
+
+    or
+
+    create a TrashFolder model
+
+
+
+Override cm validation to exempt 'finish date has passed'
